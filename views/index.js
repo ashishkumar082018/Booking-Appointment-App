@@ -8,7 +8,7 @@ function handleFormSubmit(event) {
         email: email,
         phone: phone,
     }
-    axios.post("http://127.0.0.1:3000/users/add-user", userDetails)
+    axios.post("http://localhost:3000/users/add-user", userDetails)
         .then(res => {
             const id = res.data.id;
             const li = document.createElement("li");
@@ -20,7 +20,7 @@ function handleFormSubmit(event) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    axios.get("http://127.0.0.1:3000/users/get-users")
+    axios.get("http://localhost:3000/users/get-users")
         .then(res => {
             res.data.forEach(user => {
                 const id = user.id;
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 ul.appendChild(li);
                 const editBtn = li.querySelector(".edit-btn");
                 editBtn.addEventListener("click", () => {
-                    axios.delete(`http://127.0.0.1:3000/users/delete-user/${editBtn.parentElement.id}`)
+                    axios.delete(`http://localhost:3000/users/delete-user/${editBtn.parentElement.id}`)
                         .then(res => {
                             document.getElementById('username').value = user.username;
                             document.getElementById('email').value = user.email;
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
                 const deleteBtn = li.querySelector(".delete-btn");
                 deleteBtn.addEventListener("click", () => {
-                    axios.delete(`http://127.0.0.1:3000/users/delete-user/${deleteBtn.parentElement.id}`)
+                    axios.delete(`http://localhost:3000/users/delete-user/${deleteBtn.parentElement.id}`)
                         .then(res => {
                             deleteBtn.parentElement.remove();
                         }).catch(err => console.log(err));

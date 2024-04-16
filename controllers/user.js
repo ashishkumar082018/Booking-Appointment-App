@@ -11,6 +11,7 @@ exports.addUser = (req, res, next) => {
     })
         .then(result => {
             console.log("Added Successfully");
+            res.status(201).json(result);
         })
         .catch(err => console.log(err));
 }
